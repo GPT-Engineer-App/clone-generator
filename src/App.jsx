@@ -1,29 +1,27 @@
-import { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card.jsx";
-import { Button } from "@/components/ui/button.jsx";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Index from "./pages/Index.jsx";
+import Clones from "./pages/Clones.jsx";
+import CreateClone from "./pages/CreateClone.jsx";
+import CloneSettings from "./pages/CloneSettings.jsx";
+import ClonePreview from "./pages/ClonePreview.jsx";
+import ClonePublicPage from "./pages/ClonePublicPage.jsx";
+import Navbar from "./components/Navbar.jsx";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <Card>
-        <CardHeader>
-          <CardTitle>Hello world!</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>This is an example</p>
-          <hr className="my-4" />
-          <Button onClick={() => setCount(count + 1)}>Click me</Button>
-          <div>Count: {count}</div>
-        </CardContent>
-      </Card>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Index />} />
+          <Route exact path="/clones" element={<Clones />} />
+          <Route exact path="/create-clone" element={<CreateClone />} />
+          <Route exact path="/clone-settings" element={<CloneSettings />} />
+          <Route exact path="/clone-preview" element={<ClonePreview />} />
+          <Route exact path="/clone-public-page" element={<ClonePublicPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }
